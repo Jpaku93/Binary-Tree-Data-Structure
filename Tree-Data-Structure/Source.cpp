@@ -9,13 +9,13 @@ struct Subject {
 };
 
 // create node class for a binary tree
-class Node {
+class BT {
 
 	Subject data;
-	Node* left;
-	Node* right;
+	BT* left;
+	BT* right;
 public:
-	Node(Subject data) {
+	BT(Subject data) {
 		this->data = data;
 		this->left = NULL;
 		this->right = NULL;
@@ -24,7 +24,7 @@ public:
 	void insert(Subject data) {
 		if (data.grade <= this->data.grade) {
 			if (this->left == NULL) {
-				this->left = new Node(data);
+				this->left = new BT(data);
 			}
 			else {
 				this->left->insert(data);
@@ -32,7 +32,7 @@ public:
 		}
 		else {
 			if (this->right == NULL) {
-				this->right = new Node(data);
+				this->right = new BT(data);
 			}
 			else {
 				this->right->insert(data);
@@ -106,7 +106,7 @@ int main()
 	Subject data({ "root", 0 });
 
 	// create a node class for a binary tree
-	Node* root = new Node(data);
+	BT* root = new BT(data);
 	// insert data into the tree
 	root->insert({ "John", 90 });
 	root->insert({ "Jane", 80 });
@@ -123,9 +123,8 @@ int main()
 	root->printPostOrder();
 	std::cout << "\n";
 	// check if the tree contains a subject
-	std::cout << "Does the tree contain a subject with grade of 70? " << root->contains({ "Jack", 60 }) << std::endl;
-	std::cout << "Does the tree contain a subject with grade of 80? " << root->contains({ "Jennie", 80 }) << std::endl;
-
+	std::cout << "Does the tree contain a subject with grade of 70? " << root->contains({ "", 60 }) << std::endl;
+	std::cout << "Does the tree contain a subject with grade of 80? " << root->contains({ "", 80 }) << std::endl;
 
 	return 0;
 }
